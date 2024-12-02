@@ -1,8 +1,11 @@
+# Day-02 Part Two
+# ans = 689
+
 f = open("input.txt", "r")
-
 a = f.read()
-b = a.splitlines()
+f.close()
 
+b = a.splitlines()
 ss = 0
 
 def fn(x: list) -> int:
@@ -19,12 +22,25 @@ def fn(x: list) -> int:
             return 0
         
     return 1
-        
+
+def idk(x: list) ->int:
+    if (fn(x) == 1):
+        return 1
+    
+    for i in range(len(x)):
+        removed = x[i]
+        del x[i]
+        if fn(x) == 1:
+            return 1
+        else :
+            x.insert(i, removed)
+            
+    return 0
 
 for i in b:
     c = i.split()
     for j in range(len(c)):
         c[j] = int(c[j])
-    ss += fn(c)
+    ss += idk(c)
 
 print(ss)
